@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #e6dfd5;
+    color: #111111;
+  }
+
+  body {
+    background-color: #e6dfd5;
+    color: #111111;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Hollow / Outline Typography for Hero "MY" matching Figma mockup */
+.text-outline-dark {
+  -webkit-text-stroke: 2.5px #111111;
+  color: transparent;
+}
+
+@media (max-width: 640px) {
+  .text-outline-dark {
+    -webkit-text-stroke: 1.75px #111111;
+    color: transparent;
+  }
+}
+
+/* Defer off-screen rendering for heavy below-the-fold sections per modern-web-guidance */
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 900px;
+}
+
+.deferred-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 420px;
+}
