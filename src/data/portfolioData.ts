@@ -18,6 +18,7 @@ export interface ProjectItem {
   description: string;
   techStack: string[];
   githubUrl: string;
+  demoUrl?: string;
   featured?: boolean;
   previewType?: "erp" | "culinary" | "pixelgame";
   previewBadge?: string;
@@ -362,9 +363,23 @@ export const projectsData: ProjectItem[] = [
     roles: ["Full-Stack Developer", "Frontend Developer", "Web App Developer"],
     categories: ["Web", "QA"],
     description:
-      "Membangun aplikasi web foto booth, menyusun fungsionalitas upload dan tampilan, pengujian UX dan deployment.",
-    techStack: ["Web App", "Full-Stack", "UI/UX", "Cloud Deployment"],
+      "Membangun aplikasi web foto booth interaktif, menyusun fungsionalitas ambil foto, kustomisasi frame & upload, pengujian UX serta deployment di Vercel.",
+    techStack: ["Web App", "Full-Stack", "UI/UX", "Vercel"],
     githubUrl: "https://github.com/ZidZaky/PhotoBooth-PhotoRek",
+    demoUrl: "https://photobooth-photorek.vercel.app/",
+  },
+  {
+    id: 26,
+    name: "TourAtur-App",
+    displayName: "TourAtur — Travel & Tour App",
+    year: "2026",
+    roles: ["Full-Stack Developer", "Frontend Engineer", "UI/UX Designer"],
+    categories: ["Web"],
+    description:
+      "Mengembangkan aplikasi web perencanaan perjalanan & wisata interaktif (TourAtur) dengan antarmuka modern dan responsif.",
+    techStack: ["Web App", "Modern UI/UX", "Frontend", "Vercel"],
+    githubUrl: "https://github.com/ZidZaky",
+    demoUrl: "https://touratur-app.vercel.app/",
   },
   {
     id: 3,
@@ -664,4 +679,8 @@ export const projectsData: ProjectItem[] = [
 
 export const featuredProjectsData: ProjectItem[] = projectsData.filter(
   (project) => project.featured
+);
+
+export const liveDemoProjectsData: ProjectItem[] = projectsData.filter(
+  (project) => Boolean(project.demoUrl)
 );

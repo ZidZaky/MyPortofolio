@@ -22,6 +22,7 @@ import {
   Sparkles,
   CheckCircle2,
   BookOpen,
+  Globe,
 } from "lucide-react";
 
 const yearOptions: ProjectYear[] = ["All", "2026", "2025", "2024", "2023"];
@@ -184,7 +185,7 @@ export default function AllProjectsAndJourney() {
               <div>
                 {/* Top Meta Row */}
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <div className="w-8 h-8 rounded-lg bg-cream/15 border border-cream/25 flex items-center justify-center text-cream">
                       <FolderGit2 className="w-4 h-4" />
                     </div>
@@ -194,6 +195,11 @@ export default function AllProjectsAndJourney() {
                     {project.featured && (
                       <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-navy text-cream border border-cream/30">
                         Featured
+                      </span>
+                    )}
+                    {project.demoUrl && (
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                        Live Demo
                       </span>
                     )}
                   </div>
@@ -226,7 +232,7 @@ export default function AllProjectsAndJourney() {
                 </p>
               </div>
 
-              {/* Tech Stack & Repo Link */}
+              {/* Tech Stack & Action Links (Live Demo + GitHub) */}
               <div className="mt-5 pt-3.5 border-t border-white/10 flex items-center justify-between gap-2">
                 <div className="flex flex-wrap gap-1">
                   {project.techStack.slice(0, 2).map((tech) => (
@@ -239,15 +245,28 @@ export default function AllProjectsAndJourney() {
                   ))}
                 </div>
 
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-heading font-bold text-cream hover:text-white flex-shrink-0"
-                >
-                  GitHub
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </a>
+                <div className="flex items-center gap-3 flex-shrink-0">
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs font-heading font-bold text-emerald-300 hover:text-white bg-emerald-500/15 px-2.5 py-1 rounded-md border border-emerald-400/30 transition-colors"
+                    >
+                      <Globe className="w-3.5 h-3.5" />
+                      Demo
+                    </a>
+                  )}
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-heading font-bold text-cream hover:text-white"
+                  >
+                    GitHub
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
             </article>
           ))}

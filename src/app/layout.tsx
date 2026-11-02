@@ -39,6 +39,13 @@ export const metadata: Metadata = {
   title: "Zidan Irfan Zaky - Software Engineer Portfolio | ZIDZAKY",
   description:
     "Personal Branding & Portfolio of Zidan Irfan Zaky (ZIDZAKY) — Software Engineer, Full-Stack Developer, and UI/UX Enthusiast from Telkom University Surabaya (GPA 3.96/4.00).",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/images/zidan-bw.png", type: "image/png" },
+    ],
+    apple: [{ url: "/images/zidan-bw.png", type: "image/png" }],
+  },
   keywords: [
     "Zidan Irfan Zaky",
     "ZIDZAKY",

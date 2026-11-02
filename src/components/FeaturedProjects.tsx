@@ -1,6 +1,7 @@
 import React from "react";
 import {
   featuredProjectsData,
+  liveDemoProjectsData,
   personalProfile,
   ProjectItem,
 } from "@/data/portfolioData";
@@ -13,6 +14,7 @@ import {
   Gamepad2,
   Star,
   Sparkles,
+  Globe,
 } from "lucide-react";
 
 function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
@@ -170,7 +172,6 @@ function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
       {/* Middle 8-Bit Pixel Scene Canvas */}
       <div className="my-auto py-2 relative z-10 flex flex-col items-center justify-center">
         <div className="w-full rounded-md bg-gradient-to-b from-[#1E3A5F] to-[#153B47] border border-emerald-400/30 p-2.5 flex flex-col items-center justify-between h-20 relative overflow-hidden">
-          {/* Pixel Clouds / Stars */}
           <div className="w-full flex justify-between text-[9px] font-mono text-sky-200/70">
             <span>[::]</span>
             <span className="text-emerald-300 font-bold tracking-widest">
@@ -179,7 +180,6 @@ function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
             <span>[::]</span>
           </div>
 
-          {/* Pixel Character & Collectibles Row */}
           <div className="w-full flex items-end justify-around pt-1">
             <div className="w-5 h-5 bg-emerald-400 border-2 border-white shadow-[2px_2px_0px_#000] flex items-center justify-center text-[10px] text-dark font-black">
               ♻
@@ -192,7 +192,6 @@ function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
             </div>
           </div>
 
-          {/* Pixel Ground Tiles */}
           <div className="w-full h-2 bg-emerald-500 border-t-2 border-emerald-300 -mx-2.5 -mb-2.5" />
         </div>
       </div>
@@ -240,12 +239,12 @@ export default function FeaturedProjects() {
               className="group bg-maroon rounded-xl p-5 sm:p-6 shadow-[0_14px_30px_rgba(0,0,0,0.35)] border border-white/10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.45)]"
             >
               <div>
-                {/* Clean Visual App Preview Widget (No Clipped Text) */}
+                {/* Clean Visual App Preview Widget */}
                 <a
-                  href={project.githubUrl}
+                  href={project.demoUrl || project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Buka repositori ${project.displayName}`}
+                  aria-label={`Buka proyek ${project.displayName}`}
                   className="block bg-white text-dark rounded-lg p-1.5 h-[195px] mb-5 shadow-md group-hover:ring-2 group-hover:ring-cream transition-all"
                 >
                   <ProjectPreviewGraphic project={project} />
@@ -298,8 +297,60 @@ export default function FeaturedProjects() {
           ))}
         </div>
 
+        {/* Live Deployed Web Apps Showcase Bar (PhotoBooth-PhotoRek & TourAtur App) */}
+        {liveDemoProjectsData.length > 0 && (
+          <div className="mt-10 bg-black/20 border border-white/15 rounded-2xl p-5 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                <h3 className="font-heading font-extrabold text-sm sm:text-base uppercase tracking-wider text-cream">
+                  Live Interactive Web Demos (Deployed on Vercel)
+                </h3>
+              </div>
+              <span className="text-xs text-light/70">
+                Klik untuk mencoba aplikasi secara langsung di browser
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {liveDemoProjectsData.map((demo) => (
+                <a
+                  key={demo.id}
+                  href={demo.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group bg-white/5 hover:bg-maroon/80 border border-white/15 hover:border-cream/40 rounded-xl p-4 flex items-center justify-between gap-4 transition-all"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="p-2.5 rounded-lg bg-cream/15 text-cream mt-0.5">
+                      <Globe className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <h4 className="font-heading font-extrabold text-sm sm:text-base text-white group-hover:text-cream transition-colors">
+                          {demo.displayName}
+                        </h4>
+                        <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                          Live Demo
+                        </span>
+                      </div>
+                      <p className="text-xs text-light/80 mt-1 line-clamp-1">
+                        {demo.description}
+                      </p>
+                      <p className="text-[11px] font-mono text-cream/85 mt-1">
+                        {demo.demoUrl?.replace(/^https?:\/\//, "")}
+                      </p>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-5 h-5 text-cream flex-shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Bottom quick link to Full Archive */}
-        <div className="mt-12 text-center">
+        <div className="mt-10 text-center">
           <a
             href="#archive"
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-heading font-bold tracking-wider uppercase text-cream hover:text-white border border-cream/30 hover:border-cream px-6 py-2.5 rounded-full transition-all"
