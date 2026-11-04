@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
-import { personalProfile } from "@/data/portfolioData";
+import { getPortfolioData } from "@/data/portfolioData";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   Mail,
   Phone,
@@ -10,9 +13,13 @@ import {
   MessageCircle,
   Quote,
   ArrowUpRight,
+  Globe,
 } from "lucide-react";
 
 export default function Footer() {
+  const { lang, setLang } = useLanguage();
+  const { profile, t } = getPortfolioData(lang);
+
   return (
     <footer
       id="contact"
@@ -27,22 +34,22 @@ export default function Footer() {
             </div>
             <div>
               <blockquote className="font-heading font-bold italic text-lg sm:text-xl md:text-2xl text-white leading-snug">
-                &ldquo;{personalProfile.quote}&rdquo;
+                &ldquo;{profile.quote}&rdquo;
               </blockquote>
               <p className="text-xs sm:text-sm text-cream/85 mt-2 font-medium">
-                — {personalProfile.quoteSource}
+                — {profile.quoteSource}
               </p>
             </div>
           </div>
 
           <a
-            href={personalProfile.whatsappUrl}
+            href={profile.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-cream text-dark font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider px-6 py-3.5 rounded-full hover:bg-white transition-all flex-shrink-0 shadow-md"
           >
             <MessageCircle className="w-4 h-4 text-maroon" />
-            Let&apos;s Collaborate
+            {t.footer.collaborateBtn}
           </a>
         </div>
 
@@ -54,27 +61,23 @@ export default function Footer() {
               href="#home"
               className="inline-block text-2xl tracking-tight text-light"
             >
-              <span className="font-normal">{personalProfile.brandFirst}</span>
-              <span className="font-extrabold">
-                {personalProfile.brandSecond}
-              </span>
+              <span className="font-normal">{profile.brandFirst}</span>
+              <span className="font-extrabold">{profile.brandSecond}</span>
             </a>
             <p className="text-xs sm:text-sm text-cream font-semibold mt-1.5">
-              {personalProfile.title}
+              {profile.title}
             </p>
             <p className="text-xs text-light/75 leading-relaxed mt-3">
-              Lulusan S1 Rekayasa Perangkat Lunak Telkom University Surabaya
-              (IPK 3.96/4.00) dengan fokus pada rekayasa aplikasi Full-Stack,
-              desain UI/UX modern, dan jaminan kualitas perangkat lunak.
+              {t.footer.bio}
             </p>
 
             {/* Core Skills Pills */}
             <div className="mt-5">
               <p className="text-[11px] font-heading font-bold uppercase tracking-widest text-cream/80 mb-2.5">
-                Core Competencies
+                {t.footer.coreCompetenciesTitle}
               </p>
               <div className="flex flex-wrap gap-1.5">
-                {personalProfile.coreSkills.map((skill) => (
+                {profile.coreSkills.map((skill) => (
                   <span
                     key={skill}
                     className="text-[10px] font-medium px-2.5 py-1 rounded-md bg-white/10 text-light/90 border border-white/10"
@@ -86,39 +89,39 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Direct Contact Details (Single Primary Email) */}
+          {/* Column 2: Direct Contact Details */}
           <div className="md:col-span-4 space-y-4">
             <h3 className="font-heading font-extrabold text-sm uppercase tracking-widest text-cream">
-              Contact Information
+              {t.footer.contactInfoTitle}
             </h3>
 
             <ul className="space-y-3.5 text-xs sm:text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-cream flex-shrink-0 mt-1" />
                 <span className="text-light/85 leading-relaxed">
-                  {personalProfile.location}
+                  {profile.location}
                 </span>
               </li>
 
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-cream flex-shrink-0" />
                 <a
-                  href={`mailto:${personalProfile.primaryEmail}`}
+                  href={`mailto:${profile.primaryEmail}`}
                   className="text-light/90 hover:text-cream transition-colors break-all font-medium"
                 >
-                  {personalProfile.primaryEmail}
+                  {profile.primaryEmail}
                 </a>
               </li>
 
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-cream flex-shrink-0" />
                 <a
-                  href={personalProfile.whatsappUrl}
+                  href={profile.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-light/90 hover:text-cream transition-colors font-medium"
                 >
-                  {personalProfile.phone} (WhatsApp)
+                  {profile.phone} (WhatsApp)
                 </a>
               </li>
             </ul>
@@ -127,12 +130,12 @@ export default function Footer() {
           {/* Column 3: Social Links & Quick Navigation */}
           <div className="md:col-span-3 space-y-4">
             <h3 className="font-heading font-extrabold text-sm uppercase tracking-widest text-cream">
-              Social &amp; Channels
+              {t.footer.socialTitle}
             </h3>
 
             <div className="flex flex-col space-y-2.5 text-xs sm:text-sm">
               <a
-                href={personalProfile.socials.github}
+                href={profile.socials.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between p-2.5 rounded-lg bg-white/5 hover:bg-maroon border border-white/10 transition-colors"
@@ -145,33 +148,33 @@ export default function Footer() {
               </a>
 
               <a
-                href={personalProfile.socials.linkedin}
+                href={profile.socials.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between p-2.5 rounded-lg bg-white/5 hover:bg-maroon border border-white/10 transition-colors"
               >
                 <span className="flex items-center gap-2.5 font-medium">
                   <Linkedin className="w-4 h-4 text-cream" />
-                  LinkedIn ({personalProfile.socials.linkedinHandle})
+                  LinkedIn ({profile.socials.linkedinHandle})
                 </span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-cream" />
               </a>
 
               <a
-                href={personalProfile.socials.instagram}
+                href={profile.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between p-2.5 rounded-lg bg-white/5 hover:bg-maroon border border-white/10 transition-colors"
               >
                 <span className="flex items-center gap-2.5 font-medium">
                   <Instagram className="w-4 h-4 text-cream" />
-                  Instagram ({personalProfile.socials.instagramHandle})
+                  Instagram ({profile.socials.instagramHandle})
                 </span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-cream" />
               </a>
 
               <a
-                href={personalProfile.whatsappUrl}
+                href={profile.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between p-2.5 rounded-lg bg-white/5 hover:bg-maroon border border-white/10 transition-colors"
@@ -186,31 +189,64 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Copyright Bar */}
+        {/* Bottom Copyright Bar & Language Switcher */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-light/65">
           <p>
             &copy; {new Date().getFullYear()}{" "}
             <strong className="text-light font-semibold">
-              {personalProfile.fullName} ({personalProfile.brandName})
+              {profile.fullName} ({profile.brandName})
             </strong>
-            . All rights reserved.
+            . {t.footer.allRightsReserved}
           </p>
-          <div className="flex items-center gap-6">
-            <a href="#home" className="hover:text-cream transition-colors">
-              Home
-            </a>
-            <a href="#services" className="hover:text-cream transition-colors">
-              Services
-            </a>
-            <a href="#projects" className="hover:text-cream transition-colors">
-              Projects
-            </a>
-            <a
-              href="#experience"
-              className="hover:text-cream transition-colors"
+
+          <div className="flex items-center gap-5 sm:gap-6">
+            <div className="flex items-center gap-4">
+              <a href="#home" className="hover:text-cream transition-colors">
+                {t.nav.home}
+              </a>
+              <a href="#services" className="hover:text-cream transition-colors">
+                {t.nav.services}
+              </a>
+              <a href="#projects" className="hover:text-cream transition-colors">
+                {t.nav.projects}
+              </a>
+              <a
+                href="#experience"
+                className="hover:text-cream transition-colors"
+              >
+                {t.nav.experience}
+              </a>
+            </div>
+
+            {/* Quick Footer Language Toggle */}
+            <div
+              className="flex items-center bg-white/10 border border-white/15 rounded-full p-0.5 ml-1"
+              role="group"
+              aria-label="Footer language switcher"
             >
-              Experience
-            </a>
+              <button
+                type="button"
+                onClick={() => setLang("en")}
+                className={`px-2 py-0.5 rounded-full text-[10px] font-heading font-extrabold transition-all ${
+                  lang === "en"
+                    ? "bg-cream text-dark shadow-sm"
+                    : "text-light/70 hover:text-light"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                onClick={() => setLang("id")}
+                className={`px-2 py-0.5 rounded-full text-[10px] font-heading font-extrabold transition-all ${
+                  lang === "id"
+                    ? "bg-cream text-dark shadow-sm"
+                    : "text-light/70 hover:text-light"
+                }`}
+              >
+                ID
+              </button>
+            </div>
           </div>
         </div>
       </div>

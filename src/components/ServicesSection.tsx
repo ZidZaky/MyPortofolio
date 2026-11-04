@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { personalProfile, servicesData } from "@/data/portfolioData";
+import { getPortfolioData } from "@/data/portfolioData";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   Layers,
   Palette,
@@ -27,6 +28,8 @@ function getServiceIcon(id: string) {
 export default function ServicesSection() {
   const [imgSrc, setImgSrc] = useState("/images/zidan-full.jpg");
   const [imgFailed, setImgFailed] = useState(false);
+  const { lang } = useLanguage();
+  const { profile, services, t } = getPortfolioData(lang);
 
   const handleImageError = () => {
     if (imgSrc === "/images/zidan-full.jpg") {
@@ -51,7 +54,7 @@ export default function ServicesSection() {
                 <div className="relative overflow-hidden rounded-xl bg-dark aspect-[4/3]">
                   <img
                     src={imgSrc}
-                    alt={`${personalProfile.fullName} - Graduation Telkom University Surabaya`}
+                    alt={`${profile.fullName} - Graduation Telkom University Surabaya`}
                     width={420}
                     height={315}
                     loading="lazy"
@@ -82,14 +85,14 @@ export default function ServicesSection() {
               <div className="mt-3 bg-dark text-light rounded-xl px-4 py-3 flex items-center justify-between">
                 <div>
                   <p className="text-[10px] uppercase tracking-widest text-cream/80 font-semibold">
-                    S1 Rekayasa Perangkat Lunak
+                    {t.services.academicDegree}
                   </p>
                   <p className="font-heading font-extrabold text-xs sm:text-sm">
                     Telkom University Surabaya
                   </p>
                 </div>
                 <span className="bg-maroon text-cream font-heading font-extrabold text-xs px-3 py-1 rounded-lg flex-shrink-0">
-                  IPK 3.96
+                  {t.services.academicGpa}
                 </span>
               </div>
             </div>
@@ -98,21 +101,21 @@ export default function ServicesSection() {
           {/* Right Column: Main Heading, Sub-Description, Stats & Key Coursework */}
           <div className="lg:col-span-7">
             <span className="inline-block text-xs font-heading font-extrabold tracking-widest uppercase text-maroon bg-maroon/10 px-3.5 py-1 rounded-full mb-3">
-              SERVICES &amp; CAPABILITIES
+              {t.services.badge}
             </span>
 
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] leading-[1.12] tracking-tight text-dark">
-              What can i offer to enhance <br className="hidden sm:inline" />
-              our project.
+              {t.services.headingPart1} <br className="hidden sm:inline" />
+              {t.services.headingPart2}
             </h2>
 
             <p className="mt-4 text-dark/85 text-xs sm:text-sm md:text-[15px] leading-relaxed">
-              {personalProfile.servicesIntro}
+              {profile.servicesIntro}
             </p>
 
             {/* 4 Key Summary Stats (GPA, Repos, Teaching Assistant, Understated English Note) */}
             <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {personalProfile.stats.map((stat) => (
+              {profile.stats.map((stat) => (
                 <div
                   key={stat.label}
                   className="bg-white/75 backdrop-blur-sm border border-black/10 rounded-xl p-3.5 shadow-sm"
@@ -139,10 +142,10 @@ export default function ServicesSection() {
             <div className="mt-5 bg-white/65 border border-black/10 rounded-xl p-4">
               <div className="flex items-center gap-2 text-xs font-heading font-extrabold uppercase tracking-wider text-navy mb-2.5">
                 <BookOpen className="w-4 h-4 text-maroon" />
-                <span>Core Software Engineering Coursework &amp; Focus</span>
+                <span>{t.services.courseworkTitle}</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {personalProfile.keyCourses.map((course) => (
+                {profile.keyCourses.map((course) => (
                   <span
                     key={course}
                     className="text-[11px] font-semibold px-3 py-1 rounded-lg bg-cream text-dark border border-black/10"
@@ -157,7 +160,7 @@ export default function ServicesSection() {
 
         {/* Bottom 3 Columns: Services Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 pt-8 border-t-2 border-black/15">
-          {servicesData.map((service) => (
+          {services.map((service) => (
             <div
               key={service.id}
               className="group bg-white/60 hover:bg-white rounded-2xl p-6 sm:p-7 border border-black/10 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"

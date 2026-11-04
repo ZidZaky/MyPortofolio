@@ -2,15 +2,11 @@
 
 import React, { useState, useMemo } from "react";
 import {
-  projectsData,
-  experienceData,
-  educationData,
-  certificationsData,
-  awardsData,
-  personalProfile,
+  getPortfolioData,
   ProjectYear,
   ProjectCategory,
 } from "@/data/portfolioData";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   FolderGit2,
   ArrowUpRight,
@@ -40,9 +36,19 @@ export default function AllProjectsAndJourney() {
   const [selectedYear, setSelectedYear] = useState<ProjectYear>("All");
   const [selectedCategory, setSelectedCategory] =
     useState<ProjectCategory>("All");
+  const { lang } = useLanguage();
+  const {
+    profile,
+    projects,
+    experience,
+    education,
+    certifications,
+    awards,
+    t,
+  } = getPortfolioData(lang);
 
   const filteredProjects = useMemo(() => {
-    return projectsData.filter((project) => {
+    return projects.filter((project) => {
       const matchYear =
         selectedYear === "All" || project.year === selectedYear;
       const matchCategory =
@@ -50,13 +56,13 @@ export default function AllProjectsAndJourney() {
         project.categories.includes(selectedCategory);
       return matchYear && matchCategory;
     });
-  }, [selectedYear, selectedCategory]);
+  }, [projects, selectedYear, selectedCategory]);
 
-  const workAndAcademicExp = experienceData.filter(
+  const workAndAcademicExp = experience.filter(
     (exp) =>
       exp.type === "work" || exp.type === "academic" || exp.type === "event"
   );
-  const organizationExp = experienceData.filter(
+  const organizationExp = experience.filter(
     (exp) => exp.type === "organization"
   );
 
@@ -70,13 +76,13 @@ export default function AllProjectsAndJourney() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start mb-12">
           <div className="md:col-span-5">
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] leading-[1.12] tracking-tight text-light">
-              Here is <br />
-              My Portofolio &amp; Journey
+              {t.archive.headingPart1} <br />
+              {t.archive.headingPart2}
             </h2>
           </div>
           <div className="md:col-span-7">
             <p className="text-light/85 text-xs sm:text-sm md:text-[15px] leading-relaxed">
-              {personalProfile.archiveIntro}
+              {profile.archiveIntro}
             </p>
           </div>
         </div>
@@ -88,7 +94,7 @@ export default function AllProjectsAndJourney() {
             <div>
               <div className="flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-cream/90 mb-2.5">
                 <Filter className="w-3.5 h-3.5" />
-                <span>Filter by Year</span>
+                <span>{t.archive.filterByYear}</span>
               </div>
               <div
                 className="flex flex-wrap gap-2"
@@ -108,7 +114,7 @@ export default function AllProjectsAndJourney() {
                           : "bg-white/10 text-light/85 hover:bg-white/20"
                       }`}
                     >
-                      {year}
+                      {year === "All" ? t.archive.all : year}
                     </button>
                   );
                 })}
@@ -119,7 +125,7 @@ export default function AllProjectsAndJourney() {
             <div>
               <div className="flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-cream/90 mb-2.5">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Filter by Category</span>
+                <span>{t.archive.filterByCategory}</span>
               </div>
               <div
                 className="flex flex-wrap gap-2"
@@ -139,7 +145,7 @@ export default function AllProjectsAndJourney() {
                           : "bg-white/10 text-light/85 hover:bg-white/20"
                       }`}
                     >
-                      {category}
+                      {category === "All" ? t.archive.all : category}
                     </button>
                   );
                 })}
@@ -150,15 +156,15 @@ export default function AllProjectsAndJourney() {
           {/* Filter Summary & Reset */}
           <div className="mt-4 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs text-cream/85">
             <span>
-              Menampilkan{" "}
+              {t.archive.showing}{" "}
               <strong className="text-white font-bold">
                 {filteredProjects.length}
               </strong>{" "}
-              dari{" "}
+              {t.archive.of}{" "}
               <strong className="text-white font-bold">
-                {projectsData.length}
+                {projects.length}
               </strong>{" "}
-              proyek &amp; repositori (2023–2026)
+              {t.archive.projectsCountSuffix}
             </span>
             {(selectedYear !== "All" || selectedCategory !== "All") && (
               <button
@@ -169,7 +175,7 @@ export default function AllProjectsAndJourney() {
                 }}
                 className="underline text-cream hover:text-white font-semibold"
               >
-                Reset Filter
+                {t.archive.resetFilter}
               </button>
             )}
           </div>
@@ -194,12 +200,12 @@ export default function AllProjectsAndJourney() {
                     </span>
                     {project.featured && (
                       <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-navy text-cream border border-cream/30">
-                        Featured
+                        {t.archive.featuredBadge}
                       </span>
                     )}
                     {project.demoUrl && (
                       <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                        Live Demo
+                        {t.archive.demoBadge}
                       </span>
                     )}
                   </div>
@@ -254,7 +260,7 @@ export default function AllProjectsAndJourney() {
                       className="inline-flex items-center gap-1 text-xs font-heading font-bold text-emerald-300 hover:text-white bg-emerald-500/15 px-2.5 py-1 rounded-md border border-emerald-400/30 transition-colors"
                     >
                       <Globe className="w-3.5 h-3.5" />
-                      Demo
+                      {t.archive.demoBadge}
                     </a>
                   )}
                   <a
@@ -278,14 +284,13 @@ export default function AllProjectsAndJourney() {
         <div id="experience" className="pt-12 border-t-2 border-white/20">
           <div className="mb-12">
             <span className="inline-block text-xs font-heading font-extrabold tracking-widest uppercase bg-cream text-dark px-3.5 py-1 rounded-full mb-3">
-              EXPERIENCE, EDUCATION &amp; LEADERSHIP
+              {t.archive.journeyBadge}
             </span>
             <h3 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white">
-              Academic Background &amp; Professional Journey
+              {t.archive.journeyHeading}
             </h3>
             <p className="text-light/80 text-xs sm:text-sm mt-2 max-w-2xl">
-              Rekam jejak karir di industri, kontribusi pengajaran akademik di
-              Telkom University Surabaya, serta kepemimpinan organisasi.
+              {t.archive.journeySub}
             </p>
           </div>
 
@@ -295,7 +300,7 @@ export default function AllProjectsAndJourney() {
               <div className="flex items-center gap-2.5 mb-2">
                 <Briefcase className="w-5 h-5 text-cream" />
                 <h4 className="font-heading font-extrabold text-lg sm:text-xl text-cream uppercase tracking-wide">
-                  Work &amp; Academic Experience
+                  {t.archive.workAcademicTitle}
                 </h4>
               </div>
 
@@ -346,12 +351,12 @@ export default function AllProjectsAndJourney() {
                 <div className="flex items-center gap-2.5 mb-4">
                   <GraduationCap className="w-5 h-5 text-cream" />
                   <h4 className="font-heading font-extrabold text-lg sm:text-xl text-cream uppercase tracking-wide">
-                    Education &amp; Key Coursework
+                    {t.archive.eduTitle}
                   </h4>
                 </div>
 
                 <div className="space-y-4">
-                  {educationData.map((edu) => (
+                  {education.map((edu) => (
                     <div
                       key={edu.institution}
                       className="bg-black/25 border border-white/15 rounded-xl p-5"
@@ -384,7 +389,7 @@ export default function AllProjectsAndJourney() {
                         <div className="mt-4 pt-3.5 border-t border-white/10">
                           <p className="flex items-center gap-1.5 text-[11px] font-heading font-bold uppercase tracking-wider text-cream mb-2.5">
                             <BookOpen className="w-3.5 h-3.5" />
-                            <span>Relevant Coursework &amp; Core Subjects:</span>
+                            <span>{t.archive.relevantCoursework}</span>
                           </p>
                           <div className="flex flex-wrap gap-1.5">
                             {edu.coursework.map((course) => (
@@ -411,7 +416,7 @@ export default function AllProjectsAndJourney() {
                 <div className="flex items-center gap-2.5 mb-4">
                   <Users className="w-5 h-5 text-cream" />
                   <h4 className="font-heading font-extrabold text-lg sm:text-xl text-cream uppercase tracking-wide">
-                    Organization &amp; Leadership
+                    {t.archive.orgTitle}
                   </h4>
                 </div>
 
@@ -445,12 +450,12 @@ export default function AllProjectsAndJourney() {
                 <div className="flex items-center gap-2.5 mb-4">
                   <Trophy className="w-5 h-5 text-cream" />
                   <h4 className="font-heading font-extrabold text-lg sm:text-xl text-cream uppercase tracking-wide">
-                    Honors &amp; Certifications
+                    {t.archive.honorsTitle}
                   </h4>
                 </div>
 
                 <div className="space-y-3">
-                  {awardsData.map((award) => (
+                  {awards.map((award) => (
                     <div
                       key={award.title}
                       className="bg-black/25 border border-white/15 rounded-xl p-4 flex items-start justify-between gap-3"
@@ -472,10 +477,10 @@ export default function AllProjectsAndJourney() {
                   {/* Compact, understated Language Proficiency note */}
                   <div className="bg-black/20 border border-white/10 rounded-xl p-4">
                     <p className="text-[11px] font-heading font-bold uppercase tracking-wider text-cream/80 mb-2">
-                      Language Proficiency
+                      {t.archive.langProficiencyTitle}
                     </p>
                     <div className="space-y-1.5 text-xs text-light/85">
-                      {certificationsData.map((cert) => (
+                      {certifications.map((cert) => (
                         <div
                           key={cert.title}
                           className="flex items-center justify-between gap-2"

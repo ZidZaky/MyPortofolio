@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { personalProfile } from "@/data/portfolioData";
+import { getPortfolioData } from "@/data/portfolioData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HeroSection() {
   const [imgError, setImgError] = useState(false);
+  const { lang } = useLanguage();
+  const { profile, t } = getPortfolioData(lang);
 
   return (
     <section
@@ -14,8 +17,8 @@ export default function HeroSection() {
       <div className="max-w-5xl mx-auto">
         {/* Accessible SEO Heading */}
         <h1 className="sr-only">
-          {personalProfile.fullName} ({personalProfile.brandName}) — MY
-          PORTFOLIO: {personalProfile.title}
+          {profile.fullName} ({profile.brandName}) — MY PORTFOLIO:{" "}
+          {profile.title}
         </h1>
 
         {/* Exported Hero Graphic Composition */}
@@ -23,7 +26,7 @@ export default function HeroSection() {
           {!imgError ? (
             <img
               src="/images/hero-banner.png"
-              alt={`${personalProfile.fullName} - MY PORTFOLIO UI/UX DESIGNS`}
+              alt={`${profile.fullName} - MY PORTFOLIO ${profile.heroBadgeAlt}`}
               width={924}
               height={422}
               fetchPriority="high"
@@ -36,7 +39,7 @@ export default function HeroSection() {
                 MY PORTFOLIO
               </p>
               <span className="inline-block mt-2 bg-maroon text-light font-badge font-black italic text-xl sm:text-2xl px-6 py-2 rounded-xl uppercase">
-                {personalProfile.heroBadgeAlt}
+                {profile.heroBadgeAlt}
               </span>
             </div>
           )}
@@ -45,7 +48,7 @@ export default function HeroSection() {
         {/* Sub-caption & CTA Button below the Hero Graphic */}
         <div className="pt-8 sm:pt-10 flex flex-col items-center text-center">
           <p className="max-w-[650px] text-dark/90 text-xs sm:text-sm md:text-[15px] leading-relaxed font-medium px-2">
-            {personalProfile.heroCaption}
+            {profile.heroCaption}
           </p>
 
           <div className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -53,7 +56,7 @@ export default function HeroSection() {
               href="#contact"
               className="inline-flex items-center justify-center bg-black text-light font-heading font-bold text-xs sm:text-sm tracking-widest uppercase px-10 py-3.5 rounded-xl shadow-[0_8px_18px_rgba(0,0,0,0.32)] hover:bg-maroon hover:scale-105 active:scale-95 transition-all duration-200"
             >
-              CONTACT US
+              {t.hero.contactBtn}
             </a>
           </div>
         </div>

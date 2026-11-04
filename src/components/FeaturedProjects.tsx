@@ -1,10 +1,11 @@
+"use client";
+
 import React from "react";
 import {
-  featuredProjectsData,
-  liveDemoProjectsData,
-  personalProfile,
+  getPortfolioData,
   ProjectItem,
 } from "@/data/portfolioData";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   ArrowUpRight,
   BarChart3,
@@ -17,7 +18,13 @@ import {
   Globe,
 } from "lucide-react";
 
-function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
+function ProjectPreviewGraphic({
+  project,
+  lang,
+}: {
+  project: ProjectItem;
+  lang: "en" | "id";
+}) {
   if (project.previewType === "erp") {
     return (
       <div className="w-full h-full bg-slate-50 rounded-lg p-3.5 flex flex-col justify-between border border-slate-200/80 select-none overflow-hidden">
@@ -41,7 +48,7 @@ function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
           <div className="col-span-2 bg-white rounded-md p-2.5 border border-slate-200 shadow-sm">
             <div className="flex items-center justify-between mb-2">
               <span className="text-[9px] font-bold uppercase text-slate-400">
-                Supply Chain Flow
+                {lang === "en" ? "Supply Chain Flow" : "Arus Rantai Pasok"}
               </span>
               <BarChart3 className="w-3.5 h-3.5 text-navy" />
             </div>
@@ -62,7 +69,7 @@ function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
                 99.4%
               </span>
               <span className="text-[8px] text-cream/80 mt-0.5">
-                Stock Sync
+                {lang === "en" ? "Stock Sync" : "Sinkronisasi"}
               </span>
             </div>
             <div className="flex-1 bg-white rounded-md p-2 border border-slate-200 flex flex-col justify-center">
@@ -78,9 +85,9 @@ function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
 
         {/* Bottom Status Strip */}
         <div className="flex items-center justify-between text-[10px] pt-1.5 border-t border-slate-200 text-slate-600 font-semibold">
-          <span>Full-Stack System</span>
+          <span>{lang === "en" ? "Full-Stack System" : "Sistem Full-Stack"}</span>
           <span className="inline-flex items-center gap-1 text-maroon font-bold group-hover:translate-x-0.5 transition-transform">
-            Preview <ArrowUpRight className="w-3 h-3" />
+            {lang === "en" ? "Preview" : "Pratinjau"} <ArrowUpRight className="w-3 h-3" />
           </span>
         </div>
       </div>
@@ -114,7 +121,7 @@ function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
               </div>
               <div>
                 <p className="font-heading font-extrabold text-[11px] text-dark leading-tight">
-                  Rekomendasi Terdekat
+                  {lang === "en" ? "Nearby Picks" : "Rekomendasi Terdekat"}
                 </p>
                 <p className="text-[9px] text-stone-500 mt-0.5">
                   Realtime Location • UI/UX v2
@@ -142,7 +149,7 @@ function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
 
         {/* Bottom Status Strip */}
         <div className="flex items-center justify-between text-[10px] pt-1.5 border-t border-stone-200 text-stone-600 font-semibold">
-          <span>Web App &amp; UI/UX Rework</span>
+          <span>{lang === "en" ? "Web App & UI/UX Rework" : "Aplikasi Web & UI/UX Rework"}</span>
           <span className="inline-flex items-center gap-1 text-maroon font-bold group-hover:translate-x-0.5 transition-transform">
             GitHub <ArrowUpRight className="w-3 h-3" />
           </span>
@@ -210,6 +217,10 @@ function ProjectPreviewGraphic({ project }: { project: ProjectItem }) {
 }
 
 export default function FeaturedProjects() {
+  const { lang } = useLanguage();
+  const { profile, featuredProjects, liveDemoProjects, t } =
+    getPortfolioData(lang);
+
   return (
     <section
       id="projects"
@@ -220,20 +231,20 @@ export default function FeaturedProjects() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-start mb-12 sm:mb-16">
           <div className="md:col-span-5">
             <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] leading-[1.12] tracking-tight text-light">
-              Here is <br />
-              My Portofolio
+              {t.featured.headingPart1} <br />
+              {t.featured.headingPart2}
             </h2>
           </div>
           <div className="md:col-span-7">
             <p className="text-light/85 text-xs sm:text-sm md:text-[15px] leading-relaxed">
-              {personalProfile.featuredIntro}
+              {profile.featuredIntro}
             </p>
           </div>
         </div>
 
         {/* 3-Card Featured Projects Grid (Chain ERP, Jelajah Kuliner, Zero Waste Odyssey) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-7 lg:gap-8">
-          {featuredProjectsData.map((project) => (
+          {featuredProjects.map((project) => (
             <article
               key={project.id}
               className="group bg-maroon rounded-xl p-5 sm:p-6 shadow-[0_14px_30px_rgba(0,0,0,0.35)] border border-white/10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.45)]"
@@ -247,7 +258,7 @@ export default function FeaturedProjects() {
                   aria-label={`Buka proyek ${project.displayName}`}
                   className="block bg-white text-dark rounded-lg p-1.5 h-[195px] mb-5 shadow-md group-hover:ring-2 group-hover:ring-cream transition-all"
                 >
-                  <ProjectPreviewGraphic project={project} />
+                  <ProjectPreviewGraphic project={project} lang={lang} />
                 </a>
 
                 {/* Card Title & Role Badge */}
@@ -289,7 +300,7 @@ export default function FeaturedProjects() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 font-bold text-cream hover:text-white transition-colors flex-shrink-0"
                 >
-                  View Repo
+                  {t.featured.viewRepo}
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -298,22 +309,22 @@ export default function FeaturedProjects() {
         </div>
 
         {/* Live Deployed Web Apps Showcase Bar (PhotoBooth-PhotoRek & TourAtur App) */}
-        {liveDemoProjectsData.length > 0 && (
+        {liveDemoProjects.length > 0 && (
           <div className="mt-10 bg-black/20 border border-white/15 rounded-2xl p-5 sm:p-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                 <h3 className="font-heading font-extrabold text-sm sm:text-base uppercase tracking-wider text-cream">
-                  Live Interactive Web Demos (Deployed on Vercel)
+                  {t.featured.liveDemosTitle}
                 </h3>
               </div>
               <span className="text-xs text-light/70">
-                Klik untuk mencoba aplikasi secara langsung di browser
+                {t.featured.liveDemosSub}
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {liveDemoProjectsData.map((demo) => (
+              {liveDemoProjects.map((demo) => (
                 <a
                   key={demo.id}
                   href={demo.demoUrl}
@@ -331,7 +342,7 @@ export default function FeaturedProjects() {
                           {demo.displayName}
                         </h4>
                         <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                          Live Demo
+                          {t.featured.liveDemoBadge}
                         </span>
                       </div>
                       <p className="text-xs text-light/80 mt-1 line-clamp-1">
@@ -355,7 +366,7 @@ export default function FeaturedProjects() {
             href="#archive"
             className="inline-flex items-center gap-2 text-xs sm:text-sm font-heading font-bold tracking-wider uppercase text-cream hover:text-white border border-cream/30 hover:border-cream px-6 py-2.5 rounded-full transition-all"
           >
-            Explore Complete Project Archive (2023–2026)
+            {t.featured.exploreArchiveBtn}
             <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
