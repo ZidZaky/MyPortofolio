@@ -26,6 +26,11 @@ export default function Footer() {
       className="deferred-footer bg-navy text-light pt-20 pb-12 px-5 sm:px-8 border-t border-white/10"
     >
       <div className="max-w-5xl mx-auto">
+        <h2 className="sr-only">
+          {lang === "en"
+            ? "Contact & Collaborate with Zidan Irfan Zaky (ZidZaky)"
+            : "Kontak & Kolaborasi Zidan Irfan Zaky (ZidZaky)"}
+        </h2>
         {/* Favorite Quote Banner (Attributed to Loki Season 2) */}
         <div className="bg-maroon/90 border border-white/15 rounded-2xl p-6 sm:p-8 mb-14 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-start gap-4">

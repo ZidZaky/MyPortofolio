@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
+import StructuredData from "@/components/StructuredData";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,33 +37,93 @@ const kanit = Kanit({
   display: "swap",
 });
 
+const BASE_URL = "https://zidzaky-portfolio.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Zidan Irfan Zaky - Software Engineer Portfolio | ZIDZAKY",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: "Zidan Irfan Zaky (ZidZaky) - Software Engineer & Full-Stack Developer",
+    template: "%s | Zidan Irfan Zaky (ZidZaky)",
+  },
   description:
-    "Personal Branding & Portfolio of Zidan Irfan Zaky (ZIDZAKY) — Software Engineer, Full-Stack Developer, and UI/UX Enthusiast from Telkom University Surabaya (GPA 3.96/4.00).",
+    "Zidan Irfan Zaky (ZidZaky), Software Engineer & Full-Stack Developer lulusan Telkom University Surabaya (IPK 3.96). Portofolio 24 proyek web, mobile & QA.",
+  applicationName: "Zidan Irfan Zaky Portfolio",
+  authors: [{ name: "Zidan Irfan Zaky", url: "https://github.com/ZidZaky" }],
+  creator: "Zidan Irfan Zaky",
+  publisher: "Zidan Irfan Zaky",
+  generator: "Next.js",
+  keywords: [
+    "Zidan Irfan Zaky",
+    "ZidZaky",
+    "ZIDZAKY",
+    "Zidan Zaky",
+    "Zidan Zaky software engineer",
+    "Zidan Irfan Zaky Telkom University",
+    "Software Engineer Surabaya",
+    "Full-Stack Developer Indonesia",
+    "Software Engineer Portfolio",
+    "Telkom University Surabaya",
+    "Next.js Developer Portfolio",
+    "UI/UX Designer",
+    "Software Quality Assurance QA",
+  ],
+  alternates: {
+    canonical: BASE_URL,
+    languages: {
+      "id-ID": BASE_URL,
+      "en-US": `${BASE_URL}?lang=en`,
+      "x-default": BASE_URL,
+    },
+  },
+  openGraph: {
+    title: "Zidan Irfan Zaky (ZidZaky) - Software Engineer & Full-Stack Developer",
+    description:
+      "Portofolio resmi Zidan Irfan Zaky (ZidZaky). Software Engineer lulusan Telkom University Surabaya (IPK 3.96/4.00, TOEIC 915) dengan 24 proyek software.",
+    url: BASE_URL,
+    siteName: "Zidan Irfan Zaky Portfolio",
+    type: "profile",
+    locale: "id_ID",
+    alternateLocale: ["en_US"],
+    images: [
+      {
+        url: "/images/hero-banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Zidan Irfan Zaky (ZidZaky) - Software Engineer Portfolio Banner",
+      },
+      {
+        url: "/images/zidan-full.jpg",
+        width: 800,
+        height: 600,
+        alt: "Zidan Irfan Zaky - Telkom University Surabaya Graduation",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zidan Irfan Zaky (ZidZaky) - Software Engineer Portfolio",
+    description:
+      "Software Engineer & Full-Stack Developer lulusan Telkom University Surabaya (IPK 3.96/4.00, TOEIC 915). Portofolio 24 proyek software.",
+    images: ["/images/hero-banner.png"],
+    creator: "@zid.zaky",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
       { url: "/images/zidan-bw.png", type: "image/png" },
     ],
     apple: [{ url: "/images/zidan-bw.png", type: "image/png" }],
-  },
-  keywords: [
-    "Zidan Irfan Zaky",
-    "ZIDZAKY",
-    "Software Engineer Portfolio",
-    "Full-Stack Developer",
-    "UI/UX Designer",
-    "Telkom University Surabaya",
-    "Next.js Portfolio",
-  ],
-  authors: [{ name: "Zidan Irfan Zaky", url: "https://github.com/ZidZaky" }],
-  openGraph: {
-    title: "Zidan Irfan Zaky - Software Engineer Portfolio",
-    description:
-      "Full-Stack Web & Mobile Developer, UI/UX Enthusiast, and Software Engineering Graduate from Telkom University Surabaya (IPK 3.96/4.00).",
-    type: "website",
-    locale: "id_ID",
   },
 };
 
@@ -76,6 +137,9 @@ export default function RootLayout({
       lang="id"
       className={`${inter.variable} ${plusJakartaSans.variable} ${bebasNeue.variable} ${kanit.variable} scroll-smooth`}
     >
+      <head>
+        <StructuredData />
+      </head>
       <body className="font-sans bg-cream text-dark antialiased selection:bg-maroon selection:text-light">
         <LanguageProvider>{children}</LanguageProvider>
       </body>

@@ -159,6 +159,13 @@ export interface TranslationDictionary {
     honorsTitle: string;
     langProficiencyTitle: string;
   };
+  faq: {
+    badge: string;
+    headingPart1: string;
+    headingPart2: string;
+    sub: string;
+    items: { question: string; answer: string }[];
+  };
   footer: {
     collaborateBtn: string;
     bio: string;
@@ -175,7 +182,7 @@ const commonSocials = {
   instagram: "https://instagram.com/zid.zaky",
   instagramHandle: "@zid.zaky",
   linkedin: "https://www.linkedin.com/in/zidan-zaky",
-  linkedinHandle: "zidan zaky",
+  linkedinHandle: "Zidan Irfan Zaky",
 };
 
 export const uiTranslations: Record<Language, TranslationDictionary> = {
@@ -228,6 +235,39 @@ export const uiTranslations: Record<Language, TranslationDictionary> = {
       orgTitle: "Organization & Leadership",
       honorsTitle: "Honors & Certifications",
       langProficiencyTitle: "Language Proficiency",
+    },
+    faq: {
+      badge: "FREQUENTLY ASKED QUESTIONS",
+      headingPart1: "Answers to Common Questions About",
+      headingPart2: "Zidan Irfan Zaky (ZidZaky).",
+      sub: "Clear, verified information regarding engineering background, expertise, academic honors, and collaboration channels.",
+      items: [
+        {
+          question: "Who is Zidan Irfan Zaky (ZidZaky)?",
+          answer:
+            "Zidan Irfan Zaky (nickname: ZidZaky) is a Software Engineer, Full-Stack Developer, and UI/UX Designer based in Surabaya and Sidoarjo, Indonesia. He graduated with a Bachelor's Degree in Software Engineering from Telkom University Surabaya with highest honors (GPA 3.96/4.00) and holds a TOEIC proficiency score of 915.",
+        },
+        {
+          question: "What are Zidan Irfan Zaky's core competencies and technical skills?",
+          answer:
+            "Zidan specializes in modern Full-Stack Web Development (Next.js 14, React, TypeScript, Tailwind CSS, Node.js), Cross-Platform Mobile Apps (Flutter), Software Quality Assurance (QA testing & test automation), and modern UI/UX Design using Figma design systems.",
+        },
+        {
+          question: "What notable projects has Zidan Irfan Zaky delivered?",
+          answer:
+            "Zidan has published 24 software repositories on GitHub (github.com/ZidZaky). Featured projects include Chain ERP (enterprise supply chain system), Jelajah Kuliner (culinary web application), Zero Waste Odyssey (interactive 2D pixel educational game), PhotoBooth-PhotoRek, and TourAtur App.",
+        },
+        {
+          question: "Where did Zidan Irfan Zaky study and what are his academic credentials?",
+          answer:
+            "Zidan studied Software Engineering (S1 Rekayasa Perangkat Lunak) at Telkom University Surabaya, graduating with a 3.96/4.00 GPA. He served as a Lab Teaching Assistant for Object-Oriented Programming & Software Engineering and held student leadership positions.",
+        },
+        {
+          question: "How can I contact or hire Zidan Irfan Zaky for engineering opportunities?",
+          answer:
+            "You can contact Zidan directly via email at zzidanirfan@gmail.com, via WhatsApp at +62 889-8969-4349, or connect on LinkedIn (linkedin.com/in/zidan-zaky) and GitHub (github.com/ZidZaky).",
+        },
+      ],
     },
     footer: {
       collaborateBtn: "Let's Collaborate",
@@ -288,6 +328,39 @@ export const uiTranslations: Record<Language, TranslationDictionary> = {
       honorsTitle: "Penghargaan & Sertifikasi",
       langProficiencyTitle: "Kemampuan Bahasa",
     },
+    faq: {
+      badge: "PERTANYAAN UMUM (FAQ)",
+      headingPart1: "Pertanyaan yang Sering Diajukan Seputar",
+      headingPart2: "Zidan Irfan Zaky (ZidZaky).",
+      sub: "Informasi resmi dan terverifikasi mengenai profil rekayasa, keahlian teknis, rekam jejak akademik, dan saluran kolaborasi.",
+      items: [
+        {
+          question: "Siapa itu Zidan Irfan Zaky (ZidZaky)?",
+          answer:
+            "Zidan Irfan Zaky (nama panggilan: ZidZaky) adalah seorang Software Engineer, Full-Stack Developer, dan UI/UX Designer asal Surabaya & Sidoarjo, Jawa Timur, Indonesia. Beliau merupakan lulusan S1 Rekayasa Perangkat Lunak Telkom University Surabaya dengan predikat kehormatan (IPK 3.96/4.00) dan skor kemahiran TOEIC 915.",
+        },
+        {
+          question: "Apa keahlian teknis dan spesialisasi Zidan Irfan Zaky?",
+          answer:
+            "Zidan berfokus pada pengembangan Full-Stack Web modern (Next.js 14, React, TypeScript, Tailwind CSS, Node.js), aplikasi mobile lintas platform (Flutter), Software Quality Assurance (pengujian fungsional, otomatisasi testing, & QA), serta desain antarmuka pengguna UI/UX dengan Figma.",
+        },
+        {
+          question: "Apa saja proyek portofolio unggulan karya Zidan Irfan Zaky?",
+          answer:
+            "Zidan telah menyelesaikan dan mempublikasikan 24 repositori software di GitHub (github.com/ZidZaky). Proyek unggulannya meliputi Chain ERP (sistem supply chain enterprise), Jelajah Kuliner (aplikasi rekomendasi kuliner Nusantara), gim edukasi Zero Waste Odyssey (Unity Pixel Art), PhotoBooth-PhotoRek, dan TourAtur App.",
+        },
+        {
+          question: "Di mana Zidan Irfan Zaky menempuh pendidikan dan apa pencapaian akademiknya?",
+          answer:
+            "Zidan menempuh studi S1 Rekayasa Perangkat Lunak di Telkom University Surabaya dengan IPK 3.96 dari 4.00. Selama studi, Zidan dipercaya menjadi Asisten Praktikum Pemrograman Berorientasi Objek & Rekayasa Perangkat Lunak serta aktif dalam kepemimpinan organisasi.",
+        },
+        {
+          question: "Bagaimana cara menghubungi atau merekrut Zidan Irfan Zaky?",
+          answer:
+            "Anda dapat menghubungi Zidan Irfan Zaky melalui email resmi zzidanirfan@gmail.com, WhatsApp di +62 889-8969-4349, LinkedIn di linkedin.com/in/zidan-zaky, atau meninjau kode sumber proyek di GitHub github.com/ZidZaky.",
+        },
+      ],
+    },
     footer: {
       collaborateBtn: "Mari Berkolaborasi",
       bio: "Lulusan S1 Rekayasa Perangkat Lunak Telkom University Surabaya (IPK 3.96/4.00) dengan fokus pada rekayasa aplikasi Full-Stack, desain UI/UX modern, dan jaminan kualitas perangkat lunak.",
@@ -313,8 +386,8 @@ export function getPersonalProfile(lang: Language): PersonalProfile {
     heroBadgeAlt: "UI/UX DESIGNS",
     heroCaption:
       lang === "en"
-        ? "An enthusiastic learner who never backs down from challenges. Equipped with strong software engineering, public speaking, and decisive problem-solving skills, with a proven ability to structure and communicate information effectively."
-        : "Seorang pemuda yang antusias untuk belajar dan tidak pernah menyerah dalam menghadapi tantangan. Memiliki kemampuan software engineering, public speaking, dan pengambilan keputusan yang luar biasa serta keahlian dalam mengatur dan menyampaikan informasi dengan baik.",
+        ? "Zidan Irfan Zaky (nickname: ZidZaky) is a Software Engineer, Full-Stack Developer, and UI/UX Designer graduated from Telkom University Surabaya (GPA 3.96/4.00, TOEIC 915). Specializing in modern web applications (Next.js, TypeScript), mobile development (Flutter), and Software QA."
+        : "Zidan Irfan Zaky (nama panggilan: ZidZaky) adalah Software Engineer, Full-Stack Developer, dan UI/UX Designer lulusan S1 Rekayasa Perangkat Lunak Telkom University Surabaya (IPK 3.96/4.00, TOEIC 915). Menguasai pengembangan web modern (Next.js, TypeScript), aplikasi mobile (Flutter), dan Software Quality Assurance (QA).",
     featuredIntro:
       lang === "en"
         ? "Dedicated to designing, architecting, and testing modern web applications, enterprise ERP solutions, cross-platform mobile apps, and interactive games from 2023 to 2026."
@@ -792,6 +865,24 @@ export function getProjectsData(lang: Language): ProjectItem[] {
       techStack: ["Web App", "Modern UI/UX", "Frontend", "Vercel"],
       githubUrl: "https://github.com/ZidZaky",
       demoUrl: "https://touratur-app.vercel.app/",
+    },
+    {
+      id: 27,
+      name: "ZIDZAKY-Portfolio",
+      displayName: "ZIDZAKY — Modern Portfolio Website",
+      year: "2026",
+      roles:
+        lang === "en"
+          ? ["Full-Stack Engineer", "UI/UX Specialist", "Frontend Architect"]
+          : ["Full-Stack Engineer", "UI/UX Specialist", "Frontend Architect"],
+      categories: ["Web", "QA"],
+      description:
+        lang === "en"
+          ? "Production-ready editorial portfolio website with bilingual i18n, automatic geolocation detection, Core Web Vitals optimization, and Vercel CI/CD."
+          : "Website personal branding & portofolio produksi editorial dengan dukungan bilingual i18n, deteksi geolokasi otomatis, optimasi performa, dan CI/CD Vercel.",
+      techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "i18n", "Vercel"],
+      githubUrl: "https://github.com/ZidZaky/MyPortofolio",
+      demoUrl: "https://zidzaky-portfolio.vercel.app/",
     },
     {
       id: 3,

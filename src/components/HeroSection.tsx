@@ -17,8 +17,7 @@ export default function HeroSection() {
       <div className="max-w-5xl mx-auto">
         {/* Accessible SEO Heading */}
         <h1 className="sr-only">
-          {profile.fullName} ({profile.brandName}) — MY PORTFOLIO:{" "}
-          {profile.title}
+          Zidan Irfan Zaky (ZidZaky) — Software Engineer &amp; Full-Stack Developer Portfolio
         </h1>
 
         {/* Exported Hero Graphic Composition */}
@@ -26,7 +25,7 @@ export default function HeroSection() {
           {!imgError ? (
             <img
               src="/images/hero-banner.png"
-              alt={`${profile.fullName} - MY PORTFOLIO ${profile.heroBadgeAlt}`}
+              alt="Zidan Irfan Zaky (ZidZaky) — Software Engineer & Full-Stack Developer Portfolio Banner"
               width={924}
               height={422}
               fetchPriority="high"

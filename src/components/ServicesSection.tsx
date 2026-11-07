@@ -54,7 +54,7 @@ export default function ServicesSection() {
                 <div className="relative overflow-hidden rounded-xl bg-dark aspect-[4/3]">
                   <img
                     src={imgSrc}
-                    alt={`${profile.fullName} - Graduation Telkom University Surabaya`}
+                    alt="Zidan Irfan Zaky (ZidZaky) — Wisudawan S1 Rekayasa Perangkat Lunak Telkom University Surabaya (IPK 3.96)"
                     width={420}
                     height={315}
                     loading="lazy"

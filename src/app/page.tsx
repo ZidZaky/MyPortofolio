@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import ServicesSection from "@/components/ServicesSection";
 import AllProjectsAndJourney from "@/components/AllProjectsAndJourney";
+import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 
 export default function HomePage() {
@@ -14,9 +15,9 @@ export default function HomePage() {
         <FeaturedProjects />
         <ServicesSection />
         <AllProjectsAndJourney />
+        <FaqSection />
       </main>
       <Footer />
     </div>
   );
 }
-
