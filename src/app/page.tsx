@@ -5,6 +5,7 @@ import ServicesSection from "@/components/ServicesSection";
 import AllProjectsAndJourney from "@/components/AllProjectsAndJourney";
 import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
+import LocationConsentBanner from "@/components/LocationConsentBanner";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
         <FaqSection />
       </main>
       <Footer />
+      <LocationConsentBanner />
     </div>
   );
 }

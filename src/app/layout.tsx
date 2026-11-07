@@ -69,11 +69,6 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: BASE_URL,
-    languages: {
-      "id-ID": BASE_URL,
-      "en-US": `${BASE_URL}?lang=en`,
-      "x-default": BASE_URL,
-    },
   },
   openGraph: {
     title: "Zidan Irfan Zaky (ZidZaky) - Software Engineer & Full-Stack Developer",
@@ -139,6 +134,12 @@ export default function RootLayout({
     >
       <head>
         <StructuredData />
+        <link rel="canonical" href={BASE_URL} />
+        <link rel="alternate" hrefLang="id" href={BASE_URL} />
+        <link rel="alternate" hrefLang="id-ID" href={BASE_URL} />
+        <link rel="alternate" hrefLang="en" href={`${BASE_URL}?lang=en`} />
+        <link rel="alternate" hrefLang="en-US" href={`${BASE_URL}?lang=en`} />
+        <link rel="alternate" hrefLang="x-default" href={BASE_URL} />
       </head>
       <body className="font-sans bg-cream text-dark antialiased selection:bg-maroon selection:text-light">
         <LanguageProvider>{children}</LanguageProvider>

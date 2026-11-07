@@ -1,7 +1,9 @@
 import React from "react";
+import { uiTranslations } from "@/data/portfolioData";
 
 export default function StructuredData() {
   const baseUrl = "https://zidzaky-portfolio.vercel.app";
+  const faqItems = uiTranslations.id.faq.items;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -97,48 +99,14 @@ export default function StructuredData() {
       {
         "@type": "FAQPage",
         "@id": `${baseUrl}/#faq`,
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Siapa itu Zidan Irfan Zaky (ZidZaky)?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Zidan Irfan Zaky (nama panggilan: ZidZaky) adalah seorang Software Engineer, Full-Stack Developer, dan UI/UX Designer asal Surabaya/Sidoarjo, Indonesia. Beliau merupakan lulusan S1 Rekayasa Perangkat Lunak Telkom University Surabaya dengan IPK 3.96/4.00 dan skor TOEIC 915.",
-            },
+        mainEntity: faqItems.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
           },
-          {
-            "@type": "Question",
-            name: "Apa keahlian utama dan tech stack yang dikuasai Zidan Irfan Zaky?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Keahlian utama Zidan Irfan Zaky mencakup Full-Stack Web Development modern (Next.js 14, React, TypeScript, Tailwind CSS, Node.js), Mobile Development (Flutter), Software Quality Assurance (QA & testing), dan desain antarmuka pengguna (UI/UX Design berbasis Figma).",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Berapa banyak proyek yang telah diselesaikan Zidan Irfan Zaky?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Zidan Irfan Zaky telah menyelesaikan lebih dari 24 repositori proyek software yang terdokumentasi di GitHub (github.com/ZidZaky), termasuk sistem Enterprise Chain ERP, platform Jelajah Kuliner, gim edukasi Zero Waste Odyssey (Unity), serta aplikasi web interaktif publik seperti PhotoBooth-PhotoRek dan TourAtur App.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Di mana Zidan Irfan Zaky menempuh pendidikan dan apa pencapaian akademiknya?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Zidan Irfan Zaky menempuh pendidikan S1 Rekayasa Perangkat Lunak di Telkom University Surabaya, lulus dengan IPK 3.96 dari skala 4.00. Selama perkuliahan, Zidan dipercaya sebagai Asisten Praktikum Pemrograman Berorientasi Objek & Rekayasa Perangkat Lunak serta aktif dalam kepemimpinan organisasi kemahasiswaan.",
-            },
-          },
-          {
-            "@type": "Question",
-            name: "Bagaimana cara menghubungi Zidan Irfan Zaky untuk kerja sama atau perekrutan?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Anda dapat menghubungi Zidan Irfan Zaky melalui email resmi zzidanirfan@gmail.com, pesan WhatsApp di +62 889-8969-4349, akun LinkedIn di linkedin.com/in/zidan-zaky, atau meninjau kode sumber di GitHub github.com/ZidZaky.",
-            },
-          },
-        ],
+        })),
       },
     ],
   };
@@ -150,4 +118,3 @@ export default function StructuredData() {
     />
   );
 }
-
