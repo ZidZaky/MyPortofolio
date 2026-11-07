@@ -10,6 +10,34 @@ import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/Footer";
 import LocationConsentBanner from "@/components/LocationConsentBanner";
 
+const BASE_URL = "https://zidzaky-portfolio.vercel.app";
+
+// Shared OpenGraph base so page-level metadata does NOT wipe the images/url/type
+// defined in the root layout (Next.js shallow-merges openGraph as one field).
+function buildOpenGraph(locale: "id_ID" | "en_US") {
+  return {
+    locale,
+    url: BASE_URL,
+    siteName: "Zidan Irfan Zaky Portfolio",
+    type: "profile",
+    alternateLocale: [locale === "id_ID" ? "en_US" : "id_ID"],
+    images: [
+      {
+        url: "/images/hero-banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Zidan Irfan Zaky (ZidZaky) - Software Engineer Portfolio Banner",
+      },
+      {
+        url: "/images/zidan-full.jpg",
+        width: 800,
+        height: 600,
+        alt: "Zidan Irfan Zaky - Telkom University Surabaya Graduation",
+      },
+    ],
+  };
+}
+
 export async function generateMetadata({
   searchParams,
 }: {
@@ -23,7 +51,7 @@ export async function generateMetadata({
       description:
         "Official portfolio of Zidan Irfan Zaky (ZidZaky) — Software Engineer, Full-Stack Developer, and UI/UX Designer graduated from Telkom University Surabaya (GPA 3.96/4.00, TOEIC 915).",
       openGraph: {
-        locale: "en_US",
+        ...buildOpenGraph("en_US"),
         title: "Zidan Irfan Zaky (ZidZaky) - Software Engineer & Full-Stack Developer",
         description:
           "Official portfolio of Zidan Irfan Zaky (ZidZaky) — Software Engineer & Full-Stack Developer graduated from Telkom University Surabaya (GPA 3.96/4.00, TOEIC 915).",
@@ -36,7 +64,10 @@ export async function generateMetadata({
     description:
       "Zidan Irfan Zaky (ZidZaky), Software Engineer & Full-Stack Developer lulusan Telkom University Surabaya (IPK 3.96). Portofolio 24 proyek web, mobile & QA.",
     openGraph: {
-      locale: "id_ID",
+      ...buildOpenGraph("id_ID"),
+      title: "Zidan Irfan Zaky (ZidZaky) - Software Engineer & Full-Stack Developer",
+      description:
+        "Portofolio resmi Zidan Irfan Zaky (ZidZaky). Software Engineer lulusan Telkom University Surabaya (IPK 3.96/4.00, TOEIC 915) dengan 24 proyek software.",
     },
   };
 }
