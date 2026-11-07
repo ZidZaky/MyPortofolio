@@ -31,7 +31,6 @@ export default function StructuredData() {
           addressCountry: "ID",
         },
         email: "mailto:zzidanirfan@gmail.com",
-        telephone: "+6288989694349",
         alumniOf: {
           "@type": "CollegeOrUniversity",
           name: "Telkom University Surabaya",

@@ -1,0 +1,41 @@
+# Zidan Irfan Zaky (ZidZaky)
+
+> Software Engineer, Full-Stack Developer, and UI/UX Designer based in Surabaya and Sidoarjo, Indonesia. Graduate of Telkom University Surabaya with a Bachelor of Science in Software Engineering (GPA 3.96 / 4.00, Cum Laude, TOEIC 915).
+
+## About & Profile Summary
+Zidan Irfan Zaky (nickname: ZidZaky) is an Indonesian software engineer specializing in modern full-stack web applications (Next.js 14, React, TypeScript, Tailwind CSS, Node.js), cross-platform mobile apps (Flutter), software quality assurance (QA & testing), and Figma-based UI/UX design. He has designed, built, and tested over 24 software repositories on GitHub.
+
+- **Full Name:** Zidan Irfan Zaky
+- **Nickname / Brand:** ZidZaky
+- **Role:** Software Engineer / Full-Stack Developer / UI-UX Designer
+- **Education:** B.S. in Software Engineering, Telkom University Surabaya (GPA: 3.96 / 4.00, Cum Laude)
+- **English Proficiency:** TOEIC Score 915 / 990 (Professional Working Proficiency)
+- **Location:** Sidoarjo / Surabaya, East Java, Indonesia
+- **Portfolio Website:** https://zidzaky-portfolio.vercel.app
+- **GitHub:** https://github.com/ZidZaky
+- **LinkedIn:** https://www.linkedin.com/in/zidan-zaky
+- **Instagram:** https://instagram.com/zid.zaky
+- **Email:** zzidanirfan@gmail.com
+- **WhatsApp:** +62 889-8969-4349
+
+## Core Technical Skills
+- **Frontend & Web Engineering:** Next.js 14 (App Router), React, TypeScript, JavaScript (ES6+), Tailwind CSS, HTML5, CSS3, Vite
+- **Backend & APIs:** Node.js, Express, RESTful APIs, PHP, MySQL, PostgreSQL, Prisma
+- **Mobile Development:** Flutter, Dart, Cross-Platform Android/iOS
+- **Quality Assurance & Testing:** Jest, PHPUnit, Manual Functional Testing, Black-box Testing, Test Automation
+- **UI/UX & Product Design:** Figma, Design Systems, Wireframing, Responsive Layouts
+- **Other Technologies & Tools:** C#, Java, Unity 2D Engine, Git, GitHub Actions, Vercel
+
+## Featured Projects
+- [Chain ERP](https://github.com/ZidZaky): Enterprise Resource Planning and supply chain dashboard system with KPI metrics and modular inventory management.
+- [Jelajah Kuliner](https://github.com/ZidZaky/jelajah-kuliner-v2): Modern culinary discovery web application featuring Indonesian culinary recommendations, category filters, and responsive UI.
+- [Zero Waste Odyssey](https://github.com/ZidZaky/Game-ZeroWasteOdyssey): Educational 2D pixel-art platformer game built in Unity focusing on waste sorting and environmental sustainability.
+- [PhotoBooth-PhotoRek](https://photobooth-photorek.vercel.app/): Interactive digital photo booth web platform with live camera capture, custom frame selection, and immediate client-side downloads.
+- [TourAtur App](https://touratur-app.vercel.app/): Interactive travel and itinerary planning web platform designed with modern user experience.
+- [ZIDZAKY Portfolio](https://zidzaky-portfolio.vercel.app/): Official production portfolio engineered with Next.js 14 App Router, TypeScript, Tailwind CSS, and full SEO/GEO architecture.
+
+## Academic & Leadership Experience
+- **Telkom University Surabaya (2022–2026):** S1 Rekayasa Perangkat Lunak (GPA 3.96/4.00).
+- **Academic Teaching Assistant:** Practicum Assistant for Object-Oriented Programming (OOP) & Web Programming.
+- **Student Leadership:** Active contributor to student associations and software development event committees.
+

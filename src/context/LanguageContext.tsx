@@ -16,9 +16,14 @@ const LanguageContext = createContext<LanguageContextType>({
   toggleLang: () => {},
 });
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  // Default language is Indonesian ("id") for domestic audience & SSR alignment
-  const [lang, setLangState] = useState<Language>("id");
+export function LanguageProvider({
+  children,
+  initialLang = "id",
+}: {
+  children: React.ReactNode;
+  initialLang?: Language;
+}) {
+  const [lang, setLangState] = useState<Language>(initialLang);
 
   useEffect(() => {
     // 1. Check if user arrived via explicit URL param (?lang=en or ?lang=id)

@@ -6,7 +6,6 @@ import {
   Kanit,
 } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/context/LanguageContext";
 import StructuredData from "@/components/StructuredData";
 
 const inter = Inter({
@@ -134,7 +133,6 @@ export default function RootLayout({
     >
       <head>
         <StructuredData />
-        <link rel="canonical" href={BASE_URL} />
         <link rel="alternate" hrefLang="id" href={BASE_URL} />
         <link rel="alternate" hrefLang="id-ID" href={BASE_URL} />
         <link rel="alternate" hrefLang="en" href={`${BASE_URL}?lang=en`} />
@@ -142,7 +140,7 @@ export default function RootLayout({
         <link rel="alternate" hrefLang="x-default" href={BASE_URL} />
       </head>
       <body className="font-sans bg-cream text-dark antialiased selection:bg-maroon selection:text-light">
-        <LanguageProvider>{children}</LanguageProvider>
+        {children}
       </body>
     </html>
   );
